@@ -1,6 +1,6 @@
-Readme 0x01. Shell, permissions
+Shell, permissions
 
-**About it**
+**About projects**
 
 0-iam_betty: Change your user ID to betty.
 
@@ -19,8 +19,11 @@ Readme 0x01. Shell, permissions
 7-everybody: Add execution permission to the owner, the group owner and the other users, to the file hello.
 
 8-James_Bond: Set the permission to the file hello as follows:
+
 Owner: no permission at all
+
 Group: no permission at all
+
 Other users: all the permissions
 
 9-John_Doe: Sets the mode of the file hello to this: -rwxr-x-wx
