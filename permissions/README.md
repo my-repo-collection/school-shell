@@ -1,13 +1,8 @@
----
-created: 2023-02-26T01:34:08 (UTC -03:00)
-tags: []
-source: https://intranet.hbtn.io/projects/2020
-author: 
----
 
-# Project: Shell, permissions | Holberton Montevideo, Uruguay Intranet
 
-> ## Excerpt
+# Project: Shell, permissions | Holberton 
+
+
 > Read or watch:
 
 ---
