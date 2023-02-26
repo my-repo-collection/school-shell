@@ -1,4 +1,4 @@
-# Project: Shell, init files, variables and expansions | Holberton Montevideo, Uruguay Intranet
+# Project: Shell, init files, variables and expansions | Holberton 
 
 
 > Read or watch:
