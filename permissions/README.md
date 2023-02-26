@@ -1,43 +1,543 @@
-Shell, permissions
+---
+created: 2023-02-26T01:34:08 (UTC -03:00)
+tags: []
+source: https://intranet.hbtn.io/projects/2020
+author: 
+---
 
-**About projects**
+# Project: Shell, permissions | Holberton Montevideo, Uruguay Intranet
 
-0-iam_betty: Change your user ID to betty.
+> ## Excerpt
+> Read or watch:
 
-1-who_am_i: Print the effective userid of the current user.
+---
+## Resources
 
-2-groups: Print all the groups the current user is part of.
+**Read or watch**:
 
-3-new_owner: Changes the owner of the file hello to the user betty.
+-   [Permissions](https://intranet.hbtn.io/rltoken/UL7cEzRpzknNKTQ-3-zH2w "Permissions")
 
-4-empty: Create an empty file called hello.
+**man or help**:
 
-5-execute: Adds execute permission to the owner of the file hello.
+-   `chmod`
+-   `sudo`
+-   `su`
+-   `chown`
+-   `chgrp`
+-   `id`
+-   `groups`
+-   `whoami`
+-   `adduser`
+-   `useradd`
+-   `addgroup`
 
-6-multiple_permissions: Add execute permission to the owner and the group owner, and read permission to other users, to the file hello.
+## Learning Objectives
 
-7-everybody: Add execution permission to the owner, the group owner and the other users, to the file hello.
+At the end of this project, you are expected to be able to [explain to anyone](https://intranet.hbtn.io/rltoken/LqhmtqR7VtVlYvHbe7v1_w "explain to anyone"), **without the help of Google**:
 
-8-James_Bond: Set the permission to the file hello as follows:
+### Permissions
 
-Owner: no permission at all
+-   What do the commands `chmod`, `sudo`, `su`, `chown`, `chgrp` do
+-   Linux file permissions
+-   How to represent each of the three sets of permissions (owner, group, and other) as a single digit
+-   How to change permissions, owner and group of a file
+-   Why can’t a normal user `chown` a file
+-   How to run a command with root privileges
+-   How to change user ID or become superuser  
+    
 
-Group: no permission at all
+### Other Man Pages
 
-Other users: all the permissions
+-   How to create a user
+-   How to create a group
+-   How to print real and effective user and group IDs
+-   How to print the groups a user is in
+-   How to print the effective userid
 
-9-John_Doe: Sets the mode of the file hello to this: -rwxr-x-wx
+## Requirements
 
-10-mirror_permissions: Set the mode of the file hello the same as olleh’s mode
+### General
 
-11-directories_permissions: Add execute permission to all subdirectories of the current directory for the owner, the group owner and all other users.
+-   Allowed editors: `vi`, `vim`, `emacs`
+-   All your scripts will be tested on Ubuntu 20.04 LTS
+-   All your scripts should be exactly two lines long (`$ wc -l file` should print 2)
+-   All your files should end with a new line ([why?](http://unix.stackexchange.com/questions/18743/whats-the-point-in-adding-a-new-line-to-the-end-of-a-file/18789))
+-   The first line of all your files should be exactly `#!/bin/bash`
+-   A `README.md` file, at the root of the folder of the project, describing what each script is doing
+-   You are not allowed to use backticks, `&&`, `||` or `;`
+-   All your files must be executable
 
-12-directory_permissions: Create a directory called my_dir with permissions 751 in the working directory.
+### Quiz questions
 
-13-change_group: Change the group owner to school for the file hello
+**Great!** You've completed the quiz successfully! Keep going! (Show quiz)
 
-14-change_owner_and_group: Changes the owner to vincent and the group owner to staff for all the files and directories in the working directory.
+## Tasks
 
-15-symbolic_link_permissions: Changes the owner and the group owner of _hello to vincent and staff respectively.
+### 0\. My name is Betty
 
-16-if_only: Change the owner of the file hello to vincent only if it is owned by the user guillaume.
+mandatory
+
+Score: 100.00% (Checks completed: 100.00%)
+
+Create a script that switches the current user to the user `betty`.
+
+-   You should use exactly 8 characters for your command (+1 character for the new line)
+-   You can assume that the user `betty` will exist when we will run your script
+
+```
+julien@ubuntu:/tmp/h$ tail -1 0-iam_betty | wc -c
+9
+julien@ubuntu:/tmp/h$
+```
+
+**Repo:**
+
+-   GitHub repository: `holbertonschool-shell`
+-   Directory: `permissions`
+-   File: `0-iam_betty`
+
+Score: 100.00% (Checks completed: 100.00%)
+
+Write a script that prints the effective username of the current user.
+
+```
+julien@ubuntu:/tmp/h$ ./1-who_am_i
+julien
+julien@ubuntu:/tmp/h$ 
+```
+
+**Repo:**
+
+-   GitHub repository: `holbertonschool-shell`
+-   Directory: `permissions`
+-   File: `1-who_am_i`
+
+Score: 100.00% (Checks completed: 100.00%)
+
+Write a script that prints all the groups the current user is part of.
+
+```
+julien@ubuntu:/tmp/h$ ./2-groups
+julien adm cdrom sudo dip plugdev lpadmin sambashare
+julien@ubuntu:/tmp/h$ 
+```
+
+Note: depending on the user, you will get a different output.
+
+**Repo:**
+
+-   GitHub repository: `holbertonschool-shell`
+-   Directory: `permissions`
+-   File: `2-groups`
+
+Score: 100.00% (Checks completed: 100.00%)
+
+Write a script that changes the owner of the file `hello` to the user `betty`.
+
+```
+julien@ubuntu:/tmp/h$ ls -l
+total 4
+-rwxrw-r-- 1 julien julien 30 Sep 20 14:23 3-new_owner
+-rw-rw-r-- 1 julien julien  0 Sep 20 14:18 hello
+julien@ubuntu:/tmp/h$ sudo ./3-new_owner 
+julien@ubuntu:/tmp/h$ ls -l
+total 4
+-rwxrw-r-- 1 julien julien 30 Sep 20 14:23 3-new_owner
+-rw-rw-r-- 1 betty  julien  0 Sep 20 14:18 hello
+julien@ubuntu:/tmp/h$
+```
+
+**Repo:**
+
+-   GitHub repository: `holbertonschool-shell`
+-   Directory: `permissions`
+-   File: `3-new_owner`
+
+Score: 100.00% (Checks completed: 100.00%)
+
+Write a script that creates an empty file called `hello`.
+
+**Repo:**
+
+-   GitHub repository: `holbertonschool-shell`
+-   Directory: `permissions`
+-   File: `4-empty`
+
+Score: 100.00% (Checks completed: 100.00%)
+
+Write a script that adds execute permission to the owner of the file `hello`.
+
+-   The file `hello` will be in the working directory
+
+```
+julien@ubuntu:/tmp/h$ ls -l
+total 8
+-rwxrw-r-- 1 julien julien 28 Sep 20 14:26 5-execute
+-rw-rw-r-- 1 julien julien 23 Sep 20 14:25 hello
+julien@ubuntu:/tmp/h$ ./hello
+bash: ./hello: Permission denied
+julien@ubuntu:/tmp/h$ ./5-execute 
+julien@ubuntu:/tmp/h$ ls -l
+total 8
+-rwxrw-r-- 1 julien julien 28 Sep 20 14:26 5-execute
+-rwxrw-r-- 1 julien julien 23 Sep 20 14:25 hello
+julien@ubuntu:/tmp/h$ 
+```
+
+**Repo:**
+
+-   GitHub repository: `holbertonschool-shell`
+-   Directory: `permissions`
+-   File: `5-execute`
+
+### 6\. Multiple permissions
+
+mandatory
+
+Score: 100.00% (Checks completed: 100.00%)
+
+Write a script that adds execute permission to the owner and the group owner, and read permission to other users, to the file `hello`.
+
+-   The file `hello` will be in the working directory
+
+```
+julien@ubuntu:/tmp/h$ ls -l
+total 8
+-rwxrw-r-- 1 julien julien 36 Sep 20 14:31 6-multiple_permissions
+-rw-r----- 1 julien julien 23 Sep 20 14:25 hello
+julien@ubuntu:/tmp/h$ ./6-multiple_permissions 
+julien@ubuntu:/tmp/h$ ls -l
+total 8
+-rwxrw-r-- 1 julien julien 36 Sep 20 14:31 6-multiple_permissions
+-rwxr-xr-- 1 julien julien 23 Sep 20 14:25 hello
+julien@ubuntu:/tmp/h$ 
+```
+
+**Repo:**
+
+-   GitHub repository: `holbertonschool-shell`
+-   Directory: `permissions`
+-   File: `6-multiple_permissions`
+
+Score: 100.00% (Checks completed: 100.00%)
+
+Write a script that adds execution permission to the owner, the group owner and the other users, to the file `hello`
+
+-   The file `hello` will be in the working directory
+-   You are not allowed to use commas for this script
+
+```
+julien@ubuntu:/tmp/h$ ls -l
+total 8
+-rwxrw-r-- 1 julien julien 28 Sep 20 14:35 7-everybody
+-rw-r----- 1 julien julien 23 Sep 20 14:25 hello
+julien@ubuntu:/tmp/h$ ./7-everybody 
+julien@ubuntu:/tmp/h$ ls -l
+total 8
+-rwxrw-r-- 1 julien julien 28 Sep 20 14:35 7-everybody
+-rwxr-x--x 1 julien julien 23 Sep 20 14:25 hello
+julien@ubuntu:/tmp/h$ 
+```
+
+**Repo:**
+
+-   GitHub repository: `holbertonschool-shell`
+-   Directory: `permissions`
+-   File: `7-everybody`
+
+Score: 100.00% (Checks completed: 100.00%)
+
+Write a script that sets the permission to the file `hello` as follows:
+
+-   Owner: no permission at all
+-   Group: no permission at all
+-   Other users: all the permissions
+
+The file `hello` will be in the working directory You are not allowed to use commas for this script
+
+```
+julien@ubuntu:/tmp/h$ ls -l
+total 8
+-rwxrw-r-- 1 julien julien 28 Sep 20 14:40 8-James_Bond
+-rwxr-x--x 1 julien julien 23 Sep 20 14:25 hello
+julien@ubuntu:/tmp/h$ ./8-James_Bond 
+julien@ubuntu:/tmp/h$ ls -l
+total 8
+-rwxrw-r-- 1 julien julien 28 Sep 20 14:40 8-James_Bond
+-------rwx 1 julien julien 23 Sep 20 14:25 hello
+julien@ubuntu:/tmp/h$ 
+```
+
+**Repo:**
+
+-   GitHub repository: `holbertonschool-shell`
+-   Directory: `permissions`
+-   File: `8-James_Bond`
+
+Score: 100.00% (Checks completed: 100.00%)
+
+Write a script that sets the mode of the file `hello` to this:
+
+```
+-rwxr-x-wx 1 julien julien 23 Sep 20 14:25 hello
+```
+
+-   The file `hello` will be in the working directory
+-   You are not allowed to use commas for this script
+
+**Repo:**
+
+-   GitHub repository: `holbertonschool-shell`
+-   Directory: `permissions`
+-   File: `9-John_Doe`
+
+### 10\. Look in the mirror
+
+mandatory
+
+Score: 100.00% (Checks completed: 100.00%)
+
+Write a script that sets the mode of the file `hello` the same as `olleh`’s mode.
+
+-   The file `hello` will be in the working directory
+-   The file `olleh` will be in the working directory
+
+```
+julien@ubuntu:/tmp/h$ ls -l
+total 8
+-rwxrw-r-- 1 julien julien 42 Sep 20 14:45 10-mirror_permissions
+-rwxr-x-wx 1 julien julien 23 Sep 20 14:25 hello
+-rw-rw-r-- 1 julien julien  0 Sep 20 14:43 olleh
+julien@ubuntu:/tmp/h$ ./10-mirror_permissions 
+julien@ubuntu:/tmp/h$ ls -l
+total 8
+-rwxrw-r-- 1 julien julien 42 Sep 20 14:45 10-mirror_permissions
+-rw-rw-r-- 1 julien julien 23 Sep 20 14:25 hello
+-rw-rw-r-- 1 julien julien  0 Sep 20 14:43 olleh
+julien@ubuntu:/tmp/h$ 
+```
+
+Note: the mode of `olleh` will not always be 664. Make sure your script works for any mode.
+
+**Repo:**
+
+-   GitHub repository: `holbertonschool-shell`
+-   Directory: `permissions`
+-   File: `10-mirror_permissions`
+
+### 11\. Directories
+
+mandatory
+
+Score: 100.00% (Checks completed: 100.00%)
+
+Create a script that adds execute permission to all subdirectories of the current directory for the owner, the group owner and all other users. Regular files should not be changed.
+
+```
+julien@ubuntu:/tmp/h$ ls -l
+total 20
+-rwxrwxr-x 1 julien julien   24 Sep 20 14:53 11-directories_permissions
+drwx------ 2 julien julien 4096 Sep 20 14:49 dir0
+drwx------ 2 julien julien 4096 Sep 20 14:49 dir1
+drwx------ 2 julien julien 4096 Sep 20 14:49 dir2
+-rw-rw-r-- 1 julien julien   23 Sep 20 14:25 hello
+julien@ubuntu:/tmp/h$ ./11-directories_permissions 
+julien@ubuntu:/tmp/h$ ls -l
+total 20
+-rwxrwxr-x 1 julien julien   24 Sep 20 14:53 11-directories_permissions
+drwx--x--x 2 julien julien 4096 Sep 20 14:49 dir0
+drwx--x--x 2 julien julien 4096 Sep 20 14:49 dir1
+drwx--x--x 2 julien julien 4096 Sep 20 14:49 dir2
+-rw-rw-r-- 1 julien julien   23 Sep 20 14:25 hello
+julien@ubuntu:/tmp/h$ 
+```
+
+**Repo:**
+
+-   GitHub repository: `holbertonschool-shell`
+-   Directory: `permissions`
+-   File: `11-directories_permissions`
+
+### 12\. More directories
+
+mandatory
+
+Score: 100.00% (Checks completed: 100.00%)
+
+Create a script that creates a directory called `my_dir` with permissions 751 in the working directory.
+
+```
+julien@ubuntu:/tmp/h$ ls -l
+total 20
+-rwxrwxr-x 1 julien julien   39 Sep 20 14:59 12-directory_permissions
+drwx--x--x 2 julien julien 4096 Sep 20 14:49 dir0
+drwx--x--x 2 julien julien 4096 Sep 20 14:49 dir1
+drwx--x--x 2 julien julien 4096 Sep 20 14:49 dir2
+-rw-rw-r-- 1 julien julien   23 Sep 20 14:25 hello
+julien@ubuntu:/tmp/h$ ./12-directory_permission s
+julien@ubuntu:/tmp/h$ ls -l
+total 24
+-rwxrwxr-x 1 julien julien   39 Sep 20 14:59 12-directory_permissions
+drwx--x--x 2 julien julien 4096 Sep 20 14:49 dir0
+drwx--x--x 2 julien julien 4096 Sep 20 14:49 dir1
+drwx--x--x 2 julien julien 4096 Sep 20 14:49 dir2
+drwxr-x--x 2 julien julien 4096 Sep 20 14:59 my_dir
+-rw-rw-r-- 1 julien julien   23 Sep 20 14:25 hello
+julien@ubuntu:/tmp/h$ 
+```
+
+**Repo:**
+
+-   GitHub repository: `holbertonschool-shell`
+-   Directory: `permissions`
+-   File: `12-directory_permissions`
+
+### 13\. Change group
+
+mandatory
+
+Score: 100.00% (Checks completed: 100.00%)
+
+Write a script that changes the group owner to `school` for the file `hello`
+
+-   The file `hello` will be in the working directory
+
+```
+julien@ubuntu:/tmp/h$ ls -l
+total 24
+-rwxrwxr-x 1 julien julien   34 Sep 20 15:03 13-change_group
+drwx--x--x 2 julien julien 4096 Sep 20 14:49 dir0
+drwx--x--x 2 julien julien 4096 Sep 20 14:49 dir1
+drwx--x--x 2 julien julien 4096 Sep 20 14:49 dir2
+drwxr-x--x 2 julien julien 4096 Sep 20 14:59 my_dir
+-rw-rw-r-- 1 julien julien   23 Sep 20 14:25 hello
+julien@ubuntu:/tmp/h$ sudo ./13-change_group 
+julien@ubuntu:/tmp/h$ ls -l
+total 24
+-rwxrwxr-x 1 julien julien      34 Sep 20 15:03 13-change_group
+drwx--x--x 2 julien julien    4096 Sep 20 14:49 dir0
+drwx--x--x 2 julien julien    4096 Sep 20 14:49 dir1
+drwx--x--x 2 julien julien    4096 Sep 20 14:49 dir2
+drwxr-x--x 2 julien julien    4096 Sep 20 14:59 my_dir
+-rw-rw-r-- 1 julien school   23 Sep 20 14:25 hello
+julien@ubuntu:/tmp/h$ 
+```
+
+**Repo:**
+
+-   GitHub repository: `holbertonschool-shell`
+-   Directory: `permissions`
+-   File: `13-change_group`
+
+### 14\. Owner and group
+
+mandatory
+
+Score: 100.00% (Checks completed: 100.00%)
+
+Write a script that changes the owner to `vincent` and the group owner to `staff` for all the files and directories in the working directory.
+
+```
+julien@ubuntu:/tmp/h$ ls -l
+total 24
+-rwxrwxr-x 1 julien julien   36 Sep 20 15:06 14-change_owner_and_group
+drwx--x--x 2 julien julien 4096 Sep 20 14:49 dir0
+drwx--x--x 2 julien julien 4096 Sep 20 14:49 dir1
+drwx--x--x 2 julien julien 4096 Sep 20 14:49 dir2
+drwxr-x--x 2 julien julien 4096 Sep 20 14:59 my_dir
+-rw-rw-r-- 1 julien julien   23 Sep 20 14:25 hello
+julien@ubuntu:/tmp/h$ sudo ./14-change_owner_and_group 
+julien@ubuntu:/tmp/h$ ls -l
+total 24
+-rwxrwxr-x 1 vincent staff   36 Sep 20 15:06 14-change_owner_and_group
+drwx--x--x 2 vincent staff 4096 Sep 20 14:49 dir0
+drwx--x--x 2 vincent staff 4096 Sep 20 14:49 dir1
+drwx--x--x 2 vincent staff 4096 Sep 20 14:49 dir2
+drwxr-x--x 2 vincent staff 4096 Sep 20 14:59 my_dir
+-rw-rw-r-- 1 vincent staff   23 Sep 20 14:25 hello
+julien@ubuntu:/tmp/h$ 
+```
+
+**Repo:**
+
+-   GitHub repository: `holbertonschool-shell`
+-   Directory: `permissions`
+-   File: `14-change_owner_and_group`
+
+### 15\. Symbolic links
+
+mandatory
+
+Score: 100.00% (Checks completed: 100.00%)
+
+Write a script that changes the owner and the group owner of `_hello` to `vincent` and `staff` respectively.
+
+-   The file `_hello` is in the working directory
+-   The file `_hello` is a symbolic link
+
+```
+julien@ubuntu:/tmp/h$ ls -l
+total 24
+-rwxrwxr-x 1 julien julien   44 Sep 20 15:12 15-symbolic_link_permissions
+-rw-rw-r-- 1 julien julien   23 Sep 20 14:25 hello
+lrwxrwxrwx 1 julien julien    5 Sep 20 15:10 _hello -> hello
+julien@ubuntu:/tmp/h$ sudo ./15-symbolic_link_permissions 
+julien@ubuntu:/tmp/h$ ls -l
+total 24
+-rwxrwxr-x 1 julien julien      44 Sep 20 15:12 15-symbolic_link_permissions
+-rw-rw-r-- 1 julien julien      23 Sep 20 14:25 hello
+lrwxrwxrwx 1 vincent  staff    5 Sep 20 15:10 _hello -> hello
+julien@ubuntu:/tmp/h$ 
+```
+
+**Repo:**
+
+-   GitHub repository: `holbertonschool-shell`
+-   Directory: `permissions`
+-   File: `15-symbolic_link_permissions`
+
+Score: 100.00% (Checks completed: 100.00%)
+
+Write a script that changes the owner of the file `hello` to `vincent` only if it is owned by the user `guillaume`.
+
+-   The file `hello` will be in the working directory
+
+```
+julien@ubuntu:/tmp/h$ ls -l
+total 24
+-rwxrwxr-x 1 julien    julien      47 Sep 20 15:18 16-if_only 
+-rw-rw-r-- 1 guillaume julien      23 Sep 20 14:25 hello
+julien@ubuntu:/tmp/h$ sudo ./16-if_only 
+julien@ubuntu:/tmp/h$ ls -l
+total 24
+-rwxrwxr-x 1 julien julien      47 Sep 20 15:18 16-if_only 
+-rw-rw-r-- 1 vincent  julien      23 Sep 20 14:25 hello
+julien@ubuntu:/tmp/h$ 
+```
+
+**Repo:**
+
+-   GitHub repository: `holbertonschool-shell`
+-   Directory: `permissions`
+-   File: `16-if_only`
+
+-----
+### Score
+
+![Project badge](https://intranet.hbtn.io/assets/pathway/002_color-261c5d8dcd9df7930ced5c51da7ac8a20266ad8b3861fea9ce55fbc3a4df3fd7.png)
+
+100%
+
+Congratulations! You made it!
+
+
+
+
+
+
+---------------
+
+-   [Next project: Shell, I/O Redirections and filters](https://github.com/lorecarreno/holbertonschool-shell/tree/master/io_redirections_and_filters)
+
+-----
+<center>Created by Lore ❤</center>
